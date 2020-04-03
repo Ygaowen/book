@@ -17,90 +17,85 @@
 
 </head>
 <body class="login-bg">
-<div class="login layui-anim layui-anim-up">
-    <div class="message">忘记密码</div>
-    <div id="darkbannerwrap"></div>
-    <form method="post" class="layui-form" >
-        <input name="email" placeholder="请输入你的邮箱"  type="email" class="layui-input" >
-        <hr class="hr15">
-        <input name="code" placeholder="请输入验证码"  type="hidden" >
-        <hr class="hr15">
-        <input name="password" placeholder="新密码"  type="hidden" >
-        <hr class="hr15">
-        <input value="发送" id="send" style="width:100%;" type="button">
-        <hr class="hr15">
-        <input value="重置" id="reset" style="width:100%;" type="hidden" >
-        <hr class="hr20" >
-    </form>
-</div>
+    <div class="login layui-anim layui-anim-up" style="min-height: auto;">
+        <div class="message">忘记密码</div>
+        <div id="darkbannerwrap"></div>
+        <form method="post" class="layui-form" >
+            <input name="email" placeholder="请输入你的邮箱"  type="email" class="layui-input" >
+            <hr class="hr15">
+            <input name="code" placeholder="请输入验证码"  type="hidden" class="layui-input" >
+            <hr class="hr15">
+            <input name="password" placeholder="新密码"  type="hidden" class="layui-input" >
+            <hr class="hr15">
+            <input value="发送" id="send" style="width:100%;" type="button">
+            <hr class="hr15">
+            <input value="重置" id="reset" style="width:100%;" type="hidden" >
+        </form>
+    </div>
 
-<script>
-    //发送邮件
-    $(function(){
-        $("#send").click(function(){
-            $.ajax({
-                url:"{:url('admin/user/forget')}",
-                type:'post',
-                data:$('form').serialize(),
-                dataType:'json',
-                success:function(data){
-                    if (data.code == 1){
-                        layer.msg(data.msg,{
-                            icon:6,
-                            time:1000
-                        },function(){
-                            //隐藏
-                            $("input[name='email']").attr("type","hidden");
-                            $("#send").attr("type","hidden");
-                            //显示
-                            $("input[name='code']").attr("type","text");
-                            $("input[name='password']").attr("type","password");
-                            $("#reset").attr("type","button");
-                        });
-                    }else{
-                        layer.open({
-                            title:"错误",
-                            content:data.msg,
-                            icon:5,
-                            anim:6
-                        });
+    <script>
+        //发送邮件
+        $(function(){
+            $("#send").click(function(){
+                $.ajax({
+                    url:"{:url('admin/user/forget')}",
+                    type:'post',
+                    data:$('form').serialize(),
+                    dataType:'json',
+                    success:function(data){
+                        if (data.code == 1){
+                            layer.msg(data.msg,{
+                                icon:6,
+                                time:1000
+                            },function(){
+                                //隐藏
+                                $("input[name='email']").attr("type","hidden");
+                                $("#send").attr("type","hidden");
+                                //显示
+                                $("input[name='code']").attr("type","text");
+                                $("input[name='password']").attr("type","password");
+                                $("#reset").attr("type","button");
+                            });
+                        }else{
+                            layer.open({
+                                title:"错误",
+                                content:data.msg,
+                                icon:5,
+                                anim:6
+                            });
+                        }
                     }
-                }
+                });
             });
         });
-    });
-    //重置密码
-    $(function(){
-        $("#reset").click(function(){
-            $.ajax({
-                url: "{:url('admin/user/reset')}",
-                type: 'post',
-                data: $('form').serialize(),
-                dataType: 'json',
-                success:function(data){
-                    if (data.code == 1){
-                        layer.msg(data.msg,{
-                            icon:6,
-                            time: 1000
-                        },function(){
-
-                        });
-                    }else{
-                        layer.open({
-                            title:"错误",
-                            content: data.msg,
-                            icon: 5,
-                            anim: 6
-                        })
+        //重置密码
+        $(function(){
+            $("#reset").click(function(){
+                $.ajax({
+                    url: "{:url('admin/user/reset')}",
+                    type: 'post',
+                    data: $('form').serialize(),
+                    dataType: 'json',
+                    success:function(data){
+                        if (data.code == 1){
+                            layer.msg(data.msg,{
+                                icon:6,
+                                time: 1000
+                            },function(){
+                                location.href = data.url;
+                            });
+                        }else{
+                            layer.open({
+                                title:"错误",
+                                content: data.msg,
+                                icon: 5,
+                                anim: 6
+                            })
+                        }
                     }
-                }
+                });
             });
         });
-    });
-
-
-</script>
-
-<!-- 底部结束 -->
+    </script>
 </body>
 </html>

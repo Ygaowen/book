@@ -59,11 +59,25 @@ class User extends Model{
                 session('reset_code',$reset_code);
                 return 1;
             }else{
-                return $send;
+                return '发送失败';
             }
-
         }else {
             return "邮箱不存在";
+        }
+    }
+    public function reset($data){
+        //判断验证码
+        if ($data['code'] != session('reset_code')){
+            return "验证码错误";
+        }
+        //重置密码
+        $res = $this->save([
+            'pass' => $data['pass']
+        ],['email' => $data['email']]);
+        if ($res){
+            return 1;
+        }else{
+            return '重置失败';
         }
     }
 }

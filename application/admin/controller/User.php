@@ -59,4 +59,19 @@ class User extends Controller{
         }
         return view();
     }
+    //重置
+    public function reset(){
+        //接收数据
+        $data = [
+            'email' => input('email'),
+            'code' => input('code'),
+            'pass' => input('password')
+        ];
+        $res = model('User')->reset($data);
+        if ($res == 1){
+            return $this->success('重置成功','admin/user/login');
+        }else{
+            return $res;
+        }
+    }
 }

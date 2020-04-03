@@ -18,4 +18,6 @@ Route::group('admin',function (){
     Route::rule('register','admin/user/register','get|post');
     //忘记密码
     Route::rule('forget','admin/user/forget','get|post');
+    //重置密码
+    Route::rule('reset','admin/user/reset','get|post');
 });

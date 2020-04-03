@@ -26,10 +26,13 @@
         <hr class="hr15">
         <input name="password" placeholder="密码"  type="password" class="layui-input">
         <hr class="hr15">
-        <a style="float: right;" href="{:url('admin/user/register')}">注册账号</a>
-        <a href="{:url('admin/user/forget')}">忘记密码?</a>
+        <p style="float:right;">
+            <a href="{:url('admin/user/register')}">注册账号</a>
+            <a>|</a>
+            <a href="{:url('admin/user/forget')}">忘记密码?</a>
+        </p>
+        <hr class="hr15">
         <input value="登录" id="login" style="width:100%;" type="button">
-        <hr class="hr20" >
     </form>
 </div>
 

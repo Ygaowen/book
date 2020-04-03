@@ -29,11 +29,10 @@
         <input name="password1" placeholder="确认密码"  type="password" class="layui-input">
         <hr class="hr15">
         <input style="width: 70%;" name="captcha" type="text" placeholder="验证码">
-        <img id="checkpic" style="height: 30px;width: 80px;" src="{:captcha_src()}" alt="captcha" onclick="this.src='{:captcha_src()}'" />
+        <img id="checkpic" style="height: 40px;width: 90px;" src="{:captcha_src()}" alt="captcha" onclick="this.src='{:captcha_src()}'" />
         <hr class="hr15">
         <input value="注册" id="register" style="width:100%;" type="button">
         <p style="text-align: center;"><a href="{:url('admin/user/login')}">返回登录</a></p>
-        <hr class="hr10" >
     </form>
 </div>
 

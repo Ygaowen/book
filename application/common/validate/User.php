@@ -15,6 +15,6 @@ class User extends Validate{
     protected $scene = [
         'login' => ['email','pass'],
         'register' => ['email','pass','pass1','captcha'],
-        'forget' => ['email']
+        'forget' => ['email'],
     ];
 }
